@@ -2,11 +2,11 @@ package com.liuuuu.mediademo;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -20,8 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -132,5 +131,73 @@ public class TakePicture extends AppCompatActivity {
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
         TakePicture.this.sendBroadcast(mediaScanIntent);
+    }
+
+    /**
+     * 获取图片旋转角度
+     *
+     * @param path
+     * @return
+     */
+    private int readPictureDegree(String path) {
+        int degree = 0;
+        try {
+            ExifInterface exif = new ExifInterface(path);
+            exif.setAttribute(ExifInterface.TAG_ORIENTATION, "90");
+            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    degree = 90;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    degree = 180;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    degree = 270;
+                    break;
+                default:
+                    degree = 0;
+                    break;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.e("TAG", "图片角度：" + degree + "°");
+        return degree;
+    }
+
+    /**
+     * 通过ExifInterface设置图片为正常角度
+     *
+     * @param path
+     */
+    private void setPictureDegreeZero(String path) {
+        try {
+            ExifInterface exif = new ExifInterface(path);
+            /*
+            修正图片的旋转角度，设置其不旋转。这里也可以设置其旋转的角度，可以传值过去，例如旋转90度，
+            传值ExifInterface.ORIENTATION_ROTATE_90，需要将这个值转换为String类型的
+             */
+            exif.setAttribute(ExifInterface.TAG_ORIENTATION, "no");
+            exif.saveAttributes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 使用矩阵方程旋转位图
+     *
+     * @param srcBitmap
+     * @param degree
+     * @return
+     */
+    private Bitmap getZeroDegreeBitmap(Bitmap srcBitmap, int degree) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degree);
+        Bitmap bitmap = null;
+        bitmap = Bitmap.createBitmap(srcBitmap, 0, 0, srcBitmap.getWidth(), srcBitmap.getHeight(), matrix, true);
+        return bitmap;
+
     }
 }
