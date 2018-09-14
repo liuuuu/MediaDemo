@@ -3,4 +3,7 @@
     <external-path
         name="my_images"
         path="Android/data/com.liuuuu.mediademo/files/Pictures" />
+    <external-path
+        name="my_video"
+        path="Android/data/com.liuuuu.mediademo/files/Movies" />
 </paths>
