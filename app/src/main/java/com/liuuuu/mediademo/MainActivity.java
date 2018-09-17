@@ -12,12 +12,12 @@ import java.util.List;
 
 public class MainActivity extends ListActivity {
 
-    Class[] classes = {TakePicture.class, TakeVideoActivity.class};
+    Class[] classes = {TakePicture.class, TakeVideoActivity.class, PreviewActivity.class};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String[] activities = {"拍摄照片", "拍摄视频"};
+        String[] activities = {"拍摄照片", "拍摄视频","自定义摄像头覆盖层"};
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_list_item_1, android.R.id.text1, activities);
         setListAdapter(arrayAdapter);

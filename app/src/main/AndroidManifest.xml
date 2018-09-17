@@ -3,6 +3,7 @@
     package="com.liuuuu.mediademo">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -30,7 +31,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".TakeVideoActivity"></activity>
+        <activity android:name=".TakeVideoActivity" />
+        <activity android:name=".PreviewActivity"></activity>
     </application>
 
 </manifest>

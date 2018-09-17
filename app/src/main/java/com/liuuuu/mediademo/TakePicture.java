@@ -143,7 +143,7 @@ public class TakePicture extends AppCompatActivity {
         int degree = 0;
         try {
             ExifInterface exif = new ExifInterface(path);
-            exif.setAttribute(ExifInterface.TAG_ORIENTATION, "90");
+//            exif.setAttribute(ExifInterface.TAG_ORIENTATION, String.valueOf(ExifInterface.ORIENTATION_ROTATE_90)); // 该方法可以用来设置
             int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
             switch (orientation) {
                 case ExifInterface.ORIENTATION_ROTATE_90:
@@ -198,6 +198,5 @@ public class TakePicture extends AppCompatActivity {
         Bitmap bitmap = null;
         bitmap = Bitmap.createBitmap(srcBitmap, 0, 0, srcBitmap.getWidth(), srcBitmap.getHeight(), matrix, true);
         return bitmap;
-
     }
 }
