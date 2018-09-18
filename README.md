@@ -8,7 +8,7 @@
 
 #### 预览图角度问题
 
-通过`camera.setDisplayOrientation(‘角度’);`即可修复：
+通过`camera.setDisplayOrientation(‘角度’)`即可修复：
 
 ```
 public static void setCameraDisplayOrientation(Activity activity, int cameraId, Camera camera) {
@@ -121,3 +121,17 @@ public void onPictureTaken(byte[] data, Camera camera) {
     camera.startPreview();
 }
 ```
+
+
+## 自定义视频采集
+
+MediaRecorder 和 Camera 彼此合作创建视频采集 Activity。
+同样存在预览与输出方向的问题，预览可以通过之前的方法`camera.setDisplayOrientation(角度)`输出则需要使用`MediaRecorder`对象的`setOrientationHint(角度)`方法来修改。
+
+_该示例中并未进行6.0版本以上的适配，包括权限的获取和文件的访问等_
+
+**具体实现思路：**
+创建 Activity 时，让它得到设备上的摄像头实例，并将摄像头显示方向予以修正；但并未修正输出方向；当 Activity 可见时，会收到 surfaceCreated()回调，这时 Camera 开始发送预览数据。
+开始录制，Camera 会被解锁并交给 MediaRecorder 使用。然后 MediaRecorder 会设置进行视频采集所需的参数，如数据源和数据格式，以及时间和文件大小限制。
+
+也可是已使用官方推荐的[Camera2](https://github.com/googlesamples/android-Camera2Video/#readme)
