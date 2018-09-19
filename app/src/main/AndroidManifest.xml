@@ -39,7 +39,9 @@
         <activity android:name=".VideoCaptureActivity" />
         <activity android:name=".PlayActivity" />
         <activity android:name=".VideoActivity" />
-        <activity android:name=".SoundPoolActivity"></activity>
+        <activity android:name=".SoundPoolActivity" />
+        <activity android:name=".TiltActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
