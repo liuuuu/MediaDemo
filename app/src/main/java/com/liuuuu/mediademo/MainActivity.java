@@ -13,13 +13,13 @@ import java.util.List;
 public class MainActivity extends ListActivity {
 
     Class[] classes = {TakePicture.class, TakeVideoActivity.class, PreviewActivity.class, RecordActivity.class,
-            VideoCaptureActivity.class, PlayActivity.class, VideoActivity.class, SoundPoolActivity.class, TiltActivity.class};
+            VideoCaptureActivity.class, PlayActivity.class, VideoActivity.class, SoundPoolActivity.class, TiltActivity.class, CompassActivity.class};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String[] activities = {"拍摄照片", "拍摄视频", "自定义摄像头覆盖层", "录制音频", "自定义视频采集",
-                "音频播放", "视频播放器", "播放音效", "倾斜监控器"};
+                "音频播放", "视频播放器", "播放音效", "倾斜监控器", "监控罗盘的方向"};
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_list_item_1, android.R.id.text1, activities);
         setListAdapter(arrayAdapter);
