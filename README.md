@@ -135,3 +135,9 @@ _该示例中并未进行6.0版本以上的适配，包括权限的获取和文�
 开始录制，Camera 会被解锁并交给 MediaRecorder 使用。然后 MediaRecorder 会设置进行视频采集所需的参数，如数据源和数据格式，以及时间和文件大小限制。
 
 也可是已使用官方推荐的[Camera2](https://github.com/googlesamples/android-Camera2Video/#readme)
+
+## 播放音效
+
+用 SoundPool 将音频文件缓冲加载到内存中，调用`mSoundPool.play()`来响应用户操作时的快速播放。在此之前，需要先调用`mSoundPool.load()`载入音频文件，并得到一个`soundId`，在`play()`时传入。
+可以使用`unload()`来移除声音池中的声音。
+使用完 SoundPool 之后，需要调用`release()`来释放资源

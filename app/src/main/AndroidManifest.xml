@@ -38,7 +38,8 @@
         <activity android:name=".RecordActivity" />
         <activity android:name=".VideoCaptureActivity" />
         <activity android:name=".PlayActivity" />
-        <activity android:name=".VideoActivity"></activity>
+        <activity android:name=".VideoActivity" />
+        <activity android:name=".SoundPoolActivity"></activity>
     </application>
 
 </manifest>
