@@ -37,7 +37,8 @@
         <activity android:name=".PreviewActivity" />
         <activity android:name=".RecordActivity" />
         <activity android:name=".VideoCaptureActivity" />
-        <activity android:name=".PlayActivity"></activity>
+        <activity android:name=".PlayActivity" />
+        <activity android:name=".VideoActivity"></activity>
     </application>
 
 </manifest>
