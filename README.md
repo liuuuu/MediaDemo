@@ -161,3 +161,7 @@ _该示例中并未进行6.0版本以上的适配，包括权限的获取和文�
 ● Roll：围绕指向磁极北极的旋转角度。
 
 通过`SensorManager.getRotationMatrix()`方法获得设备的方向矩阵，它的输入值是**加速度计**和**磁场传感器**的最新值，输出在第一个参数中。用`SensorManager.remapCoordinateSystem()`来将空间视角转换为相机视角，X轴不需要处理，直接映射。但Y轴(手机屏幕的纵轴)执行那个空间坐标系的Z轴(指向地面的轴)。这样在直握手机，在屏幕上预览到的方向才能与真实方向匹配。
+
+## 从媒体内容中获取元数据
+
+使用`MediaMetadataRetriever`读取媒体文件并返回有用信息。调用`retriever.setDataSource()`设置数据源。`getFrameAtTime()`返回视频中一帧的位图图像。该方法也可以添加参数帧的时间，单位毫秒。

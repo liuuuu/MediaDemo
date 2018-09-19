@@ -43,7 +43,8 @@
         <activity
             android:name=".TiltActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".CompassActivity"></activity>
+        <activity android:name=".CompassActivity" />
+        <activity android:name=".MetadataActivity"></activity>
     </application>
 
 </manifest>
